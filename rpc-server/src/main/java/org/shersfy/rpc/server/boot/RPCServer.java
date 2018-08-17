@@ -2,8 +2,8 @@ package org.shersfy.rpc.server.boot;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.ipc.RPC;
-import org.shersfy.rpc.protocols.UserService;
-import org.shersfy.rpc.server.service.UserServiceImpl;
+import org.shersfy.rpc.protocols.Services;
+import org.shersfy.rpc.server.service.ServicesImpl;
 
 public class RPCServer {
     
@@ -17,8 +17,8 @@ public class RPCServer {
         new RPC.Builder(new Configuration(false))
         .setBindAddress(host)
         .setPort(port)
-        .setProtocol(UserService.class)
-        .setInstance(new UserServiceImpl())
+        .setProtocol(Services.class)
+        .setInstance(new ServicesImpl())
         .build()
         .start();
     }

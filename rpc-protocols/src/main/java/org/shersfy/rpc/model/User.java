@@ -1,86 +1,64 @@
 package org.shersfy.rpc.model;
 
-import java.io.DataInput;
-import java.io.DataOutput;
-import java.io.IOException;
 import java.io.Serializable;
-
-import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.Text;
-import org.apache.hadoop.io.Writable;
 
 import com.alibaba.fastjson.JSON;
 
-public class User implements Writable, Serializable, Cloneable{
+public class User implements Serializable{
     
     /**
      * 
      */
     private static final long serialVersionUID = 1L;
 
-    private LongWritable id;
+    private Long id;
     
-    private Text username;
+    private String username;
     
-    private Text password;
+    private String password;
     
     public User() {
         super();
     }
     
-
+    
     public User(Long id, String username, String password) {
         super();
-        this.id = new LongWritable(id);
-        this.username = new Text(username);
-        this.password = new Text(password);
+        this.id = id;
+        this.username = username;
+        this.password = password;
     }
 
+
     public Long getId() {
-        return id.get();
+        return id;
     }
 
     public void setId(Long id) {
-        this.id = new LongWritable(id);
+        this.id = id;
     }
+
 
     public String getUsername() {
-        return username.toString();
+        return username;
     }
+
 
     public void setUsername(String username) {
-        this.username = new Text(username);
+        this.username = username;
     }
+
 
     public String getPassword() {
-        return password.toString();
+        return password;
     }
+
 
     public void setPassword(String password) {
-        this.password = new Text(password);
-    }
-
-    @Override
-    public User clone() throws CloneNotSupportedException {
-        return (User) super.clone();
+        this.password = password;
     }
 
 
-    @Override
-    public void write(DataOutput out) throws IOException {
-        id.write(out);
-        username.write(out);
-        password.write(out);
-    }
-
-
-    @Override
-    public void readFields(DataInput in) throws IOException {
-        id.readFields(in);
-        username.readFields(in);
-        password.readFields(in);
-    }
-    
     @Override
     public String toString() {
         return JSON.toJSONString(this);
